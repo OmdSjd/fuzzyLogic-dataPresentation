@@ -1,21 +1,27 @@
 <div class="page-wrapper">
-  <header class="topbar"></header>
+  <header class="topbar">
+    <div class="v-align-center">
+      <h3>Omid Sajedi</h3>
+    </div>
+  </header>
   <section class="breadcrumbs">
     <ul class="v-align-row">
       <li>Home<i class="fa fa-chevron-right" aria-hidden="true"></i></li>
-      <li class="current">Fuzzy Logic Presentation</li>
+      <li class="current">Data visualisation</li>
     </ul>
   </section>
-  <section class="container">
+  <section class="container mb-3 mt-5">
     <div class="row">
       <div class="col">
-        <div class="os-card">
+        <div class="os-card" *ngIf="members.length > 0" >
           <div class="os-card-header"><h4>Member Functions</h4></div>
           <div class="os-card-body">
-            <div class="entire-range">
-              <div class="sub-range v-align-center">
-                <div class="sub-range-core">
-                  <h3>Low</h3>
+            <div *ngFor="let m of members">
+              <div class="entire-range" (click)="showThisMember(m)">
+                <div class="sub-range v-align-center" [ngStyle]="{'width.%' : m.surface, 'margin-left.%' : m.start}">
+                  <div class="sub-range-core" [ngStyle]="{'width.%' : m.core, 'margin-left.%' : m.startCore}">
+                    <h3>{{m.membershipFunction.name}}</h3>
+                  </div>
                 </div>
               </div>
             </div>
@@ -24,6 +30,30 @@
             <span>0</span>
             <span>0.5</span>
             <span>1</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="container" *ngIf="showThis && memberToShow">
+    <div class="row">
+      <div class="col">
+        <div class="os-card">
+          <div class="os-card-header"><h4>Member: {{memberToShow.membershipFunction.name}}</h4></div>
+          <div class="os-card-body">
+            <ul class="p-3">
+              <li class="v-align-row v-spread p-1"><span>UpperStart</span><span>{{memberToShow.membershipFunction.upperStart}}</span></li>
+              <li class="v-align-row v-spread p-1"><span>UpperTop1</span><span>{{memberToShow.membershipFunction.upperTop1}}</span></li>
+              <li class="v-align-row v-spread p-1"><span>UpperTop2</span><span>{{memberToShow.membershipFunction.upperTop2}}</span></li>
+              <li class="v-align-row v-spread p-1"><span>UpperEnd</span><span>{{memberToShow.membershipFunction.upperEnd}}</span></li>
+            </ul>
+          </div>
+          <div class="os-card-footer member-info">
+            <ul class="v-align-row v-spread p-3">
+              <li class="v-align-column"><span class="os-range">Range:</span><span>{{memberToShow.surface | number:'1.1-3'}}%</span></li>
+              <li class="v-align-column"><span class="os-core">Core:</span><span>{{memberToShow.core | number:'1.1-3'}}%</span></li>
+              <li class="v-align-column"><span class="os-fuzzy">Fuzzy:</span><span>{{memberToShow.fuzzy | number:'1.1-3'}}%</span></li>
+            </ul>
           </div>
         </div>
       </div>
