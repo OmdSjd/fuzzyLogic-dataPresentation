@@ -49,6 +49,7 @@ export class AppComponent {
       console.log(m);
     });
   }
+  /* Todo: Check why data visualisation of the HIGH block is not 100% accurate */
   private calculateSurface(membershipFunction: MemberShipFunction): Member {
     const m: Member = new Member();
     if (membershipFunction) {

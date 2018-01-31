@@ -181,3 +181,19 @@ v-align-center{
   width: 150px;
   margin: 10px 0;
 }
+@media(max-width: 768px){
+  .os-card-footer.member-info ul{
+    display: block;
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .os-card-footer.member-info ul > li{
+    display: block;
+    padding-bottom: 15px;
+  }
+  .os-card-footer.member-info ul > li:last-child{
+    padding-bottom: 0;
+  }
+}
